@@ -16,9 +16,7 @@ RUN mv frp_0.29.0_linux_arm64.tar.gz frp.tar.gz
 
 RUN mkdir frp && \
     tar -zvxf frp.tar.gz \
-    && rm -rf frp_${VERSION}_linux_${PLATFORM}/system* \
-    && cp frp_${VERSION}_linux_${PLATFORM}/* ./frp \
-    && rm -rf frp_${VERSION}_linux_*
+    && mv frp_${VERSION}_linux_${PLATFORM} frp
 
 # Clean APK cache
 RUN rm -rf /var/cache/apk/*
@@ -26,8 +24,9 @@ RUN rm -rf /var/cache/apk/*
 #RUN mkdir /conf
 #VOLUME /conf
 
-COPY frpc.ini /frpc.ini
 
 WORKDIR /home/root/frp/
+
+COPY frpc.ini /frpc.ini
 
 CMD ["./frpc","-c","/frpc.ini"]
