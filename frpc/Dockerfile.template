@@ -12,7 +12,7 @@ WORKDIR /home/root/
 RUN wget https://github.com/fatedier/frp/releases/download/v0.29.0/frp_0.29.0_linux_arm64.tar.gz
 RUN mv frp_0.29.0_linux_arm64.tar.gz frp.tar.gz
 
-#COPY frp.tar.gz .
+# COPY frp.tar.gz .
 
 RUN mkdir frp && \
     tar -zvxf frp.tar.gz \
@@ -21,12 +21,14 @@ RUN mkdir frp && \
 # Clean APK cache
 RUN rm -rf /var/cache/apk/*
 
-#RUN mkdir /conf
-#VOLUME /conf
+# RUN mkdir /conf
+# VOLUME /conf
 
 
 WORKDIR /home/root/frp/
 
 COPY frpc.ini /frpc.ini
+
+ENV INITSYSTEM on
 
 CMD ["./frpc","-c","/frpc.ini"]
