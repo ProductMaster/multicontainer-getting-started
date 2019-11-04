@@ -23,5 +23,4 @@ services:
   balena-openssh:
     build:
       context: ./balena-openssh
-    expose:
-      - '22'
+    privileged: true
