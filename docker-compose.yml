@@ -20,3 +20,8 @@ services:
       context: ./frpc
     expose:
       - '9998'
+  balena-openssh:
+    build:
+      context: ./balena-openssh
+    expose:
+      - '22'
