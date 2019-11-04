@@ -4,13 +4,13 @@ services:
     build: ./frontend
     expose:
       - "80"
-  proxy:
-    build: ./haproxy
-    depends_on:
-      - frontend
-      - data
-    ports:
-      - "80:80"
+  # proxy:
+  #   build: ./haproxy
+  #   depends_on:
+  #     - frontend
+  #     - data
+  #   ports:
+  #     - "80:80"
   data:
     build: ./data
     expose:
@@ -19,7 +19,11 @@ services:
     build:
       context: ./frpc
     privileged: true
+    expose:
+      - "9998"
   balena-openssh:
     build:
       context: ./balena-openssh
     privileged: true
+    expose:
+      - "22"
