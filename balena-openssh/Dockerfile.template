@@ -1,7 +1,8 @@
 # This first line selects our base image. In this instance we use the dockerfile templates,
 # this means the appropriate image gets picked for instance on rpi3, this would end up
 # resolving to resin/raspberrypi3-python:latest
-FROM resin/raspberrypi4-python:latest
+FROM arm32v6/alpine:latest
+#FROM resin/raspberrypi4-python:latest
 MAINTAINER Shaun Mulligan <shaun@balena.io>
 
 # here we install apt dependencies. We also remove the apt lists in the same step,
